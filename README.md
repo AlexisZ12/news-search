@@ -5,7 +5,9 @@
 一个简洁高效的命令行工具，用于通过 TianAPI 按分类和关键词搜索新闻资讯 📰
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-brightgreen?logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-blueviolet?logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-purple?logo=robot&logoColor=white)](https://github.com/openclaw/openclaw)
+[![QwenPaw](https://img.shields.io/badge/QwenPaw-Skill-blue?logo=robot&logoColor=white)](https://github.com/agentscope-ai/QwenPaw)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Requests](https://img.shields.io/badge/Requests-2.x-green)](https://docs.python-requests.org/)
 [![TianAPI](https://img.shields.io/badge/TianAPI-AllNews-orange)](https://www.tianapi.com/)
@@ -28,11 +30,25 @@
 
 ## 🚀 快速开始
 
-### 📦 安装依赖
+### 📦 安装
 
 ```bash
+# 1. 安装 Python 依赖
 pip install requests
+
+# 2. 将技能安装到对应平台
+
+# Claude Code
+cp -r skills/news-search ~/.claude/skills/news-search
+
+# OpenClaw
+cp -r skills/news-search ~/.openclaw/skills/news-search
+
+# QwenPaw
+cp -r skills/news-search ~/.copaw/skill_pool/news-search
 ```
+
+安装完成后，在对应平台对话中直接调用 `/news-search` 即可使用。
 
 ### 🔑 获取 API Key
 
@@ -48,15 +64,29 @@ export TIAN_API_KEY="your_api_key"
 
 ### 🎮 基本用法
 
+**方式一：安装为平台技能（推荐）**
+
+在对应平台对话中直接使用：
+
+```
+/news-search -c ai -k "深度学习"
+/news-search -c keji -k "芯片" -n 20
+```
+
+**方式二：直接运行脚本（测试/调试用途）**
+
 ```bash
-# 查看帮助 👀
-python scripts/news_search.py --help
+# 进入脚本目录 👀
+cd skills/news-search/scripts
+
+# 查看帮助
+python news_search.py --help
 
 # 搜索 AI 相关新闻 🔍
-python scripts/news_search.py -c ai -k "深度学习"
+python news_search.py -c ai -k "深度学习"
 
 # 搜索国内经济新闻，返回 20 条 📈
-python scripts/news_search.py -c guonei -k "经济" -n 20
+python news_search.py -c guonei -k "经济" -n 20
 ```
 
 ---
@@ -75,19 +105,19 @@ python scripts/news_search.py -c guonei -k "经济" -n 20
 
 ```bash
 # 🤖 AI 领域搜索
-python scripts/news_search.py -c ai -k "大模型"
+python news_search.py -c ai -k "大模型"
 
 # 📱 科技资讯搜索
-python scripts/news_search.py -c keji -k "芯片" -n 20
+python news_search.py -c keji -k "芯片" -n 20
 
 # 🏀 体育新闻搜索
-python scripts/news_search.py -c nba -k "季后赛"
+python news_search.py -c nba -k "季后赛"
 
 # 💰 财经新闻搜索
-python scripts/news_search.py -c caijing -k "新能源"
+python news_search.py -c caijing -k "新能源"
 
 # 🔢 使用数字 colid（科技=13）
-python scripts/news_search.py -c 13 -k "人工智能"
+python news_search.py -c 13 -k "人工智能"
 ```
 
 ---
@@ -180,9 +210,14 @@ key=<API_KEY>&col=<colid>&word=<keyword>&num=<1-50>
 ```
 news-search/
 ├── README.md
-├── SKILL.md
-└── scripts/
-    └── news_search.py
+├── README_EN.md
+├── LICENSE
+├── .gitignore
+└── skills/
+    └── news-search/
+        ├── SKILL.md
+        └── scripts/
+            └── news_search.py
 ```
 
 ---

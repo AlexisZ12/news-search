@@ -5,7 +5,9 @@
 A clean and efficient CLI tool for searching news articles via TianAPI by category and keyword 📰
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-brightgreen?logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-blueviolet?logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-purple?logo=robot&logoColor=white)](https://github.com/openclaw/openclaw)
+[![QwenPaw](https://img.shields.io/badge/QwenPaw-Skill-blue?logo=robot&logoColor=white)](https://github.com/agentscope-ai/QwenPaw)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Requests](https://img.shields.io/badge/Requests-2.x-green)](https://docs.python-requests.org/)
 [![TianAPI](https://img.shields.io/badge/TianAPI-AllNews-orange)](https://www.tianapi.com/)
@@ -28,11 +30,25 @@ A clean and efficient CLI tool for searching news articles via TianAPI by catego
 
 ## 🚀 Quick Start
 
-### 📦 Install Dependencies
+### 📦 Installation
 
 ```bash
+# 1. Install Python dependencies
 pip install requests
+
+# 2. Install the skill for your platform
+
+# Claude Code
+cp -r skills/news-search ~/.claude/skills/news-search
+
+# OpenClaw
+cp -r skills/news-search ~/.openclaw/skills/news-search
+
+# QwenPaw
+cp -r skills/news-search ~/.copaw/skill_pool/news-search
 ```
+
+Once installed, simply call `/news-search` in your platform's conversation.
 
 ### 🔑 Get API Key
 
@@ -48,15 +64,29 @@ export TIAN_API_KEY="your_api_key"
 
 ### 🎮 Basic Usage
 
+**Method 1: As a Platform Skill (Recommended)**
+
+Use directly in your platform's conversation:
+
+```
+/news-search -c ai -k "deep learning"
+/news-search -c keji -k "chip" -n 20
+```
+
+**Method 2: Run Script Directly (for testing/debugging)**
+
 ```bash
-# View help 👀
-python scripts/news_search.py --help
+# Navigate to the script directory 👀
+cd skills/news-search/scripts
+
+# View help
+python news_search.py --help
 
 # Search AI-related news 🔍
-python scripts/news_search.py -c ai -k "deep learning"
+python news_search.py -c ai -k "deep learning"
 
 # Search domestic news, return 20 results 📈
-python scripts/news_search.py -c guonei -k "economy" -n 20
+python news_search.py -c guonei -k "economy" -n 20
 ```
 
 ---
@@ -75,19 +105,19 @@ python scripts/news_search.py -c guonei -k "economy" -n 20
 
 ```bash
 # 🤖 AI domain search
-python scripts/news_search.py -c ai -k "LLM"
+python news_search.py -c ai -k "LLM"
 
 # 📱 Tech news search
-python scripts/news_search.py -c keji -k "chip" -n 20
+python news_search.py -c keji -k "chip" -n 20
 
 # 🏀 Sports news search
-python scripts/news_search.py -c nba -k "playoffs"
+python news_search.py -c nba -k "playoffs"
 
 # 💰 Finance news search
-python scripts/news_search.py -c caijing -k "green energy"
+python news_search.py -c caijing -k "green energy"
 
 # 🔢 By numeric colid (tech = 13)
-python scripts/news_search.py -c 13 -k "AI"
+python news_search.py -c 13 -k "AI"
 ```
 
 ---
@@ -182,9 +212,13 @@ key=<API_KEY>&col=<colid>&word=<keyword>&num=<1-50>
 news-search/
 ├── README.md
 ├── README_EN.md
-├── SKILL.md
-└── scripts/
-    └── news_search.py
+├── LICENSE
+├── .gitignore
+└── skills/
+    └── news-search/
+        ├── SKILL.md
+        └── scripts/
+            └── news_search.py
 ```
 
 ---
